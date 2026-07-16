@@ -6,6 +6,8 @@ services:
     buildCommand: pip install -r requirements.txt && pip install flask-cors
     startCommand: cd src && python app_cors.py
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
       - key: FLASK_ENV
         value: production
       - key: FLASK_DEBUG
