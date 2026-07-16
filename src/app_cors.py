@@ -269,6 +269,8 @@ if __name__ == '__main__':
     # En producción, usar 0.0.0.0 para ser accesible desde fuera
     host = '127.0.0.1' if debug else '0.0.0.0'
     
-    print(f"Iniciando TranscriptorIA API en {host}:5000")
+    port = int(os.environ.get('PORT', '5000'))
+
+    print(f"Iniciando TranscriptorIA API en {host}:{port}")
     print(f"Modo debug: {debug}")
-    app.run(host=host, port=5000, debug=debug, threaded=True)
+    app.run(host=host, port=port, debug=debug, threaded=True)
