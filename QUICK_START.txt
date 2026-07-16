@@ -1,0 +1,191 @@
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  🎉 TRANSCRIPTORIA - GITHUB PAGES READY 🎉               ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ✅ LO QUE SE HIZO                                                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  1. ✓ Limpieza automática de chunks
+     - Se eliminan al terminar la transcripción
+     - También archivos de audio originales
+     
+  2. ✓ Interfaz web estática para GitHub Pages
+     - Carpeta: docs/
+     - Archivos: index.html, app.js, style.css, README.md
+     
+  3. ✓ Backend API con CORS
+     - Archivo: src/app_cors.py
+     - Compatible con GitHub Pages
+     
+  4. ✓ Documentación completa
+     - DEPLOYMENT.md: Guía de deploy
+     - CAMBIOS.md: Resumen de cambios
+     - render.yaml: Config Render.com
+     
+  5. ✓ Scripts de instalación
+     - setup.sh: Linux/Mac
+     - setup.bat: Windows
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🚀 INICIO RÁPIDO (LOCAL)                                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  📌 Windows:
+     1. Ejecuta: setup.bat
+     2. cd src
+     3. python app_cors.py
+     4. Abre: docs/index.html
+     5. URL servidor: http://localhost:5000
+
+  📌 Linux/Mac:
+     1. bash setup.sh
+     2. cd src
+     3. python app_cors.py
+     4. Abre: docs/index.html
+     5. URL servidor: http://localhost:5000
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🌐 DEPLOYMENT EN LA NUBE                                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ╔═ OPCIÓN 1: Render.com (RECOMENDADO) ═════════════════════════╗
+  ║ 1. Ve a render.com                                           ║
+  ║ 2. Conecta tu repositorio de GitHub                          ║
+  ║ 3. Crea Web Service (render.yaml se detecta automático)      ║
+  ║ 4. Deploy ✓                                                   ║
+  ║ 5. URL: https://transcriptor-api.onrender.com                ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  ╔═ OPCIÓN 2: Heroku (LEGACY - Ahora es de pago) ═══════════════╗
+  ║ Ver DEPLOYMENT.md para instrucciones legadas                 ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  ╔═ OPCIÓN 3: VPS Propio ════════════════════════════════════════╗
+  ║ Ver DEPLOYMENT.md para Ubuntu/Debian + Nginx + Systemd       ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📂 ESTRUCTURA DE ARCHIVOS                                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TranscriptorIA/
+├── 📁 docs/                     ← GITHUB PAGES (Interfaz estática)
+│   ├── index.html               ← Abrir en navegador
+│   ├── app.js                   ← Lógica cliente
+│   ├── style.css                ← Estilos
+│   └── README.md                ← Instrucciones
+│
+├── 📁 src/
+│   ├── app.py                   ← Original (mejorado con limpieza)
+│   ├── app_cors.py              ← 👈 USAR ESTE (con CORS)
+│   ├── transcriptor.py
+│   ├── splitter.py
+│   └── ... otros archivos
+│
+├── 📁 audios/
+│   ├── uploads/                 ← Los chunks se limpian automáticamente
+│   └── chunks_*/                ← (Se eliminan después de procesar)
+│
+├── 📁 salidas/
+│   ├── *.txt                    ← Transcripciones
+│   └── *.docx                   ← Documentos formateados
+│
+├── 📄 README.md                 ← Documentación principal
+├── 📄 DEPLOYMENT.md             ← Guía de deployment
+├── 📄 CAMBIOS.md                ← Resumen de cambios
+├── 📄 render.yaml               ← Config para Render.com
+├── 📄 .gitignore                ← Archivos ignorados
+├── 📄 .env.example              ← Variables de entorno
+├── 🐚 setup.sh                  ← Setup Linux/Mac
+└── 🐚 setup.bat                 ← Setup Windows
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ⚙️  CONFIGURACIÓN                                                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  Variables de entorno (.env):
+  ├── FLASK_PORT=5000          (Puerto del servidor)
+  ├── FLASK_DEBUG=false        (Debug mode)
+  ├── FLASK_ENV=production     (Entorno)
+  └── CORS_ORIGINS=*           (Orígenes CORS - en desarrollo)
+
+  Dependencias a instalar:
+  ├── pip install -r requirements.txt
+  └── pip install flask-cors
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 🔧 TROUBLESHOOTING                                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ❌ "FFmpeg no encontrado"
+     → Windows: descarga ffmpeg.org
+     → Linux: sudo apt install ffmpeg
+     → Mac: brew install ffmpeg
+
+  ❌ "No se conecta al servidor"
+     → ¿Está corriendo? python src/app_cors.py
+     → URL correcta: http://localhost:5000 (sin slash final)
+     → ¿Puerto correcto? (default 5000)
+
+  ❌ "Error de CORS"
+     → Usa app_cors.py, no app.py
+     → CORS ya está configurado para *
+
+  ❌ "Chunks no se limpian"
+     → Se eliminan automáticamente al terminar
+     → Revisa permisos en audios/uploads/
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📋 CHECKLIST - ANTES DE USAR EN PRODUCCIÓN                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  ☐ Python 3.8+ instalado
+  ☐ FFmpeg instalado y en PATH
+  ☐ Dependencias: pip install -r requirements.txt
+  ☐ CORS: pip install flask-cors
+  ☐ Pruebado localmente: python src/app_cors.py
+  ☐ URL servidor configurada en docs/index.html
+  ☐ Conexión probada: Probar conexión ✓
+  ☐ Archivo de prueba subido y procesado
+  ☐ Chunks eliminados automáticamente ✓
+  ☐ Ready para GitHub Pages
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📝 PRÓXIMOS PASOS                                                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+  1. Ejecuta setup.bat (Windows) o setup.sh (Linux/Mac)
+  
+  2. Inicia el servidor:
+     cd src
+     python app_cors.py
+  
+  3. Prueba localmente:
+     → Abre: docs/index.html
+     → Configura: http://localhost:5000
+     → Prueba conexión: ✓
+  
+  4. Sube a GitHub:
+     git add .
+     git commit -m "Feat: GitHub Pages + limpieza chunks"
+     git push
+  
+  5. Activa GitHub Pages (opcional):
+     → Settings → Pages
+     → Branch: main, Folder: /docs
+     → URL: https://tu-usuario.github.io/TranscriptorIA
+  
+  6. Deploy en Render (opcional):
+     → render.com → Conecta repositorio
+     → Deploy automático
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║ 🎊 ¡LISTO! Tu TranscriptorIA está adaptada para GitHub Pages 🎊          ║
+║                                                                            ║
+║ 📖 Lee DEPLOYMENT.md para opciones avanzadas de deployment                ║
+║ 📞 ¿Preguntas? Crea un issue en GitHub                                    ║
+║ ❤️  Made with love para transcribir audios con IA                         ║
+╚════════════════════════════════════════════════════════════════════════════╝
+

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: transcriptor-api
+    runtime: python310
+    buildCommand: pip install -r requirements.txt && pip install flask-cors
+    startCommand: cd src && python app_cors.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: false
+    disk:
+      name: transcriptor-files
+      mountPath: /workspace/audios
+      sizeGB: 10
